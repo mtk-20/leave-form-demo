@@ -13,8 +13,6 @@ public interface EmployeeService {
 
     EmployeeDto getEmployeeById(Long id);
 
-//    Optional<EmployeeDto> findById(Long id);
-
     List<EmployeeDto> findByName(String name);
 
     EmployeeDto updateEmployee(Long id, EmployeeDto dto);

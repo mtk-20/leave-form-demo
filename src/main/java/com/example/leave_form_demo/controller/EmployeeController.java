@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,18 +28,21 @@ public class EmployeeController {
         return ResponseEntity.ok(service.getEmployeeById(id));
     }
 
+    @PreAuthorize("hasRole('EMPLOYEE_ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<EmployeeDto> createEmployee(@Valid @RequestBody EmployeeDto dto) {
         EmployeeDto saved = service.createEmployee(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
+    @PreAuthorize("hasRole('EMPLOYEE_ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeDto dto) {
         EmployeeDto updated = service.updateEmployee(id, dto);
         return ResponseEntity.ok(updated);
     }
 
+    @PreAuthorize("hasRole('EMPLOYEE_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
         service.deleteEmployee(id);
@@ -47,6 +51,6 @@ public class EmployeeController {
 
     @GetMapping("/search")
     public ResponseEntity<List<EmployeeDto>> searchEmployeesByName(@RequestParam String name) {
-            return ResponseEntity.ok(service.findByName(name));
+        return ResponseEntity.ok(service.findByName(name));
     }
 }

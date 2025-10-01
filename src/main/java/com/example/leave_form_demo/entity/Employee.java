@@ -16,8 +16,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@ToString(exclude = "details")
-//@EqualsAndHashCode(exclude = "details")
 @Table(name = "emp_tbl")
 public class Employee {
 

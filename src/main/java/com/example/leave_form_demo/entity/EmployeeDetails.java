@@ -11,8 +11,6 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-//@ToString(exclude = "employee")
-//@EqualsAndHashCode(exclude = "employee")
 @Table(name = "emp_details")
 public class EmployeeDetails {
 
